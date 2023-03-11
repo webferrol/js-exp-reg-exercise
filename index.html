@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>Expresiones regulares</title>
+</head>
+<body>
+    <main class="principal">
+        <header class="cabecera_principal">
+            <h1>Expresiones regulares</h1>
+        </header>
+        <div class="contenido">
+            <section class="seccion_ejercicios">
+                <header>
+                    <h2>Ejercicios con expresiones regulares</h2>
+                </header>
+                <form id="myForm">
+                    <div class="ejercicio1">
+                        <h3>Ejercicio</h3>
+                        <label>Campo <input type="text" name="campo"></label>
+                        <button id="b1">No campo vacío</button>
+                        <span class="pista">\s</span>
+                    </div>
+                    <div class="ejercicio2">
+                        <h3>Ejercicio</h3>
+                        <label>Número positivo <input type="text" name="numero-positivo" placeholder="+4"></label>
+                        <button id="b2">Número positivo</button>
+                        <span class="pista">[0-9] o también \d</span>
+                    </div>
+                    <div class="ejercicio3">
+                        <h3>Ejercicio</h3>
+                        <label>Nif <input type="text" name="nif" placeholder="32670089-S"></label>
+                        <button id="b3">Validad Nif</button>
+                        <span class="pista">32670089-s, pero también 32670089s</span>
+                    </div>
+                    <div class="ejercicio4">
+                        <h3>Ejercicio</h3>
+                        <label>Código postal <input type="text" name="cp" placeholder="15401"></label>
+                        <button id="b4">Código postal</button>
+                    </div>
+                    <div class="ejercicio5">
+                        <h3>Ejercicio</h3>
+                        <label>Login <input type="text" name="login" placeholder="homegoma"></label>
+                        <button id="b5">Validar login</button>
+                    </div>
+                    <div class="ejercicio6">
+                        <h3>Ejercicio</h3>
+                        <label>Fecha <input type="text" name="fecha" placeholder="06-04-1943"></label>
+                        <button id="b6">Validar fecha</button>
+                        <span class="pista">Formato: dd-mm-aaaa | dd/mm/aaaa</span>
+                    </div>
+                </form>
+            </section>
+            <section>
+                <header>
+                    <h2>¿Qué es una <strong>expreción regular</strong>?</h2>
+                    <p>
+                        Las <strong>expresiones regulares</strong> son <em>patrones</em> utilizados para <em>encontrar</em> una determinada <em>combinación de caracteres</em> dentro de una <strong>cadena de texto</strong>.
+                    </p>
+                </header>
+                <img src="./img/regex1.jpg" alt="">
+            </section>
+        </div>
+    </main>
+    <script type="module" defer src="main.js"></script>
+</body>
+</html>
