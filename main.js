@@ -5,38 +5,47 @@ document.querySelector('form')
     e.preventDefault()
   })
 
-document.querySelector('#b1').addEventListener('click', () => {
-  const expReg = /^\s*$/
-  const input = document.querySelector('[name="campo"]')
-  if (expReg.test(input.value)) console.log('El campo nombre no puede estar vacío')
-})
+function manipularBoton (documentPadre) {
+  const input = documentPadre.querySelector('input')
+  const name = input.getAttribute('name')
 
-document.querySelector('#b2').addEventListener('click', () => {
-  const expReg = /^\+?\d+$/
-  const input = document.querySelector('[name="numero-positivo"]')
-  if (!expReg.test(input.value)) console.log('Sólo se admiten números positivos')
-})
+  if (name === 'campo') {
+    const expReg = /^\s*$/
+    if (expReg.test(input.value)) console.log('El campo nombre no puede estar vacío')
+  }
 
-document.querySelector('#b3').addEventListener('click', () => {
-  const expReg = /^\d{8}-?[a-zA-Z]$/
-  const input = document.querySelector('[name="nif"]')
-  if (!expReg.test(input.value)) console.log('NIF NO VÁLIDO')
-})
+  if (name === 'numero-positivo') {
+    const expReg = /^\+?\d+$/
+    if (!expReg.test(input.value)) console.log('Sólo se admiten números positivos')
+  }
 
-document.querySelector('#b4').addEventListener('click', () => {
-  const expReg = /^[0-5]\d{4}$/
-  const input = document.querySelector('[name="cp"]')
-  if (!expReg.test(input.value)) console.log('CP NO VÁLIDO')
-})
+  if (name === 'nif') {
+    const expReg = /^\d{8}-?[a-zA-Z]$/
+    if (!expReg.test(input.value)) console.log('NIF NO VÁLIDO')
+  }
 
-document.querySelector('#b5').addEventListener('click', () => {
-  const expReg = /^[\w]+$/i
-  const input = document.querySelector('[name="login"]')
-  if (!expReg.test(input.value)) console.log('LOGIN NO VÁLIDO')
-})
+  if (name === 'cp') {
+    const expReg = /^[0-5]\d{4}$/
+    if (!expReg.test(input.value)) console.log('cp NO VÁLIDO')
+  }
 
-document.querySelector('#b6').addEventListener('click', () => {
-  const expReg = /^([0-3][0-9]\/[0-1][0-9]\/\d{4})|([0-3][0-9]-[0-1][0-9]-\d{4})$/
-  const input = document.querySelector('[name="fecha"]')
-  if (!expReg.test(input.value)) console.log('Fecha NO VÁLIDO')
-})
+  if (name === 'login') {
+    const expReg = /^[\w]+$/i
+    if (!expReg.test(input.value)) console.log('login NO VÁLIDO')
+  }
+
+  if (name === 'fecha') {
+    const expReg = /^([0-3][0-9]\/[0-1][0-9]\/\d{4})|([0-3][0-9]-[0-1][0-9]-\d{4})$/
+    if (!expReg.test(input.value)) console.log('fecha NO VÁLIDO')
+  }
+}
+
+document.querySelector('form')
+  .addEventListener('click', (e) => {
+    // e.currentTarget --> quien provocó el evento
+    const elemento = e.target
+
+    if (elemento.tagName === 'BUTTON') {
+      manipularBoton(elemento.parentElement)
+    }
+  })
