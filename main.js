@@ -6,12 +6,27 @@ document.querySelector('form')
     e.preventDefault()
   })
 
+
+const dialogo = document.querySelector('#dialog')
+const btnClose = dialogo.querySelector('#close-dialog')
+const btnMsg = dialogo.querySelector('#msg-dialog')
+
+btnClose.addEventListener('click', () => {
+  dialogo.close()
+})
+
+function mostrarErrores (elmentoRaiz, errorValue) {
+  // elmentoRaiz.append(errorValue)
+  dialogo.showModal()
+}
+
 function manipularBoton (documentPadre) {
   const input = documentPadre.querySelector('input')
   const name = input.getAttribute('name')
+
   switch (name) {
     case 'campo':
-      if (campos[name]['expReg'].test(input.value)) console.log(campos[name]['error'])
+      if (campos[name]['expReg'].test(input.value)) mostrarErrores(documentPadre, campos[name]['error'])
       break
     case 'numero-positivo':
     case 'nif':
