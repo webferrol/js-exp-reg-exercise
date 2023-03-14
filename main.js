@@ -1,45 +1,36 @@
 'use strict'
-import campos from './types/tipos-campos.js'
+import { Dialog } from './Dialog.js'
+import opciones from './types/tipos-campos.js'
 
-document.querySelector('form')
-  .addEventListener('submit', (e) => {
-    e.preventDefault()
-  })
+let modal = null
 
+function mostrarErrores (errorValue) {
+  if (modal === null) {
+    modal = new Dialog()
+    document.body.prepend(modal.getDialog())
+  }
 
-const dialogo = document.querySelector('#dialog')
-const btnClose = dialogo.querySelector('#close-dialog')
-const btnMsg = dialogo.querySelector('#msg-dialog')
+  modal.inputText(errorValue)
+  modal.showModal()
+}
 
-btnClose.addEventListener('click', () => {
-  dialogo.close()
-})
-
-function mostrarErrores (elmentoRaiz, errorValue) {
-  // elmentoRaiz.append(errorValue)
-  dialogo.showModal()
+function validacion (campo, inputValue) {
+  return opciones[campo](inputValue)
 }
 
 function manipularBoton (documentPadre) {
   const input = documentPadre.querySelector('input')
   const name = input.getAttribute('name')
-
-  switch (name) {
-    case 'campo':
-      if (campos[name]['expReg'].test(input.value)) mostrarErrores(documentPadre, campos[name]['error'])
-      break
-    case 'numero-positivo':
-    case 'nif':
-    case 'cp':
-    case 'login':
-    case 'fecha':
-      if (!campos[`${name}`]['expReg'].test(input.value)) console.log(campos[name]['error'])
-      break
-    default:
-      console.log('No existe ese campo')
-      break
-  }
+  const error = validacion(name, input.value)
+  if (error) mostrarErrores(error)
 }
+
+// Eventos
+
+document.querySelector('form')
+  .addEventListener('submit', (e) => {
+    e.preventDefault()
+  })
 
 document.querySelector('form')
   .addEventListener('click', (e) => {
